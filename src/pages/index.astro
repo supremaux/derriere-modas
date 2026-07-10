@@ -1,0 +1,1906 @@
+---
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <title>Derriere | Vestidos de Gala & Alta Costura de Luxo</title>
+
+    <!-- Google Fonts: Cormorant Garamond para títulos de luxo e Plus Jakarta Sans para leitura nítida -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      .font-display {
+        font-family: "Cormorant Garamond", serif;
+      }
+      .font-sans-custom {
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+      /* Animação suave para revelar elementos */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 1s ease;
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0a0a0a;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #db2777;
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+  <body
+    class="antialiased bg-neutral-950 text-neutral-100 font-sans-custom selection:bg-pink-600 selection:text-white overflow-x-hidden"
+  >
+    <!-- TOAST NOTIFICATION SYSTEM -->
+    <div
+      id="toast-container"
+      class="fixed bottom-5 right-5 z-50 flex flex-col gap-3 max-w-sm w-full"
+    >
+    </div>
+
+    <!-- HEADER / NAVIGATION (Sticky & Blur) -->
+    <header
+      id="main-header"
+      class="fixed top-0 left-0 w-full z-40 transition-all duration-500 border-b border-transparent"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 h-20 md:h-24 flex items-center justify-between"
+      >
+        <!-- Logo -->
+        <a
+          href="#"
+          class="text-3xl md:text-4xl font-display font-semibold tracking-[0.2em] text-white hover:text-pink-400 transition-colors duration-300"
+        >
+          DERRIÈRE
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav
+          class="hidden md:flex items-center space-x-10 text-xs tracking-[0.25em] uppercase font-light"
+        >
+          <a
+            href="#collections"
+            class="hover:text-pink-400 transition-colors duration-300 relative py-2 group"
+          >
+            Coleções
+            <span
+              class="absolute bottom-0 left-0 w-0 h-[1px] bg-pink-500 transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
+          <a
+            href="#customizer"
+            class="hover:text-pink-400 transition-colors duration-300 relative py-2 group"
+          >
+            Atelier Interativo
+            <span
+              class="absolute bottom-0 left-0 w-0 h-[1px] bg-pink-500 transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
+          <a
+            href="#size-assistant"
+            class="hover:text-pink-400 transition-colors duration-300 relative py-2 group"
+          >
+            Couture Fit
+            <span
+              class="absolute bottom-0 left-0 w-0 h-[1px] bg-pink-500 transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
+          <a
+            href="#manifesto"
+            class="hover:text-pink-400 transition-colors duration-300 relative py-2 group"
+          >
+            A Maison
+            <span
+              class="absolute bottom-0 left-0 w-0 h-[1px] bg-pink-500 transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
+        </nav>
+
+        <!-- CTA / Booking & Bag Icons -->
+        <div class="flex items-center space-x-4 md:space-x-6">
+          <button
+            id="open-booking-btn"
+            class="hidden lg:inline-flex items-center space-x-2 border border-pink-500/50 hover:border-pink-500 bg-pink-950/20 px-5 py-2.5 rounded-full text-xs tracking-widest uppercase transition-all duration-300 hover:shadow-[0_0_15px_rgba(219,39,119,0.3)]"
+          >
+            <span class="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
+            <span>Agendar Atelier VIP</span>
+          </button>
+
+          <button
+            id="bag-btn"
+            class="relative p-2 text-white hover:text-pink-400 transition-colors duration-300"
+            aria-label="Sacola de Compras"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"
+              ></path><path d="M3 6h18"></path><path d="M16 10a4 4 0 0 1-8 0"
+              ></path></svg
+            >
+            <span
+              id="bag-count"
+              class="absolute -top-1 -right-1 bg-pink-600 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold"
+              >0</span
+            >
+          </button>
+
+          <!-- Mobile Menu Toggle -->
+          <button
+            id="mobile-menu-toggle"
+            class="md:hidden p-2 text-white hover:text-pink-400 transition-colors duration-300"
+            aria-label="Abrir Menu"
+          >
+            <svg
+              id="menu-icon-open"
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M4 6h16M4 12h16M4 18h16"></path></svg
+            >
+            <svg
+              id="menu-icon-close"
+              class="w-6 h-6 hidden"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M6 18L18 6M6 6l12 12"></path></svg
+            >
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden absolute top-20 left-0 w-full bg-neutral-950/95 backdrop-blur-xl border-b border-neutral-800 transition-all duration-300 ease-in-out px-6 py-8"
+      >
+        <div
+          class="flex flex-col space-y-6 text-sm tracking-[0.2em] uppercase font-light"
+        >
+          <a
+            href="#collections"
+            class="mobile-link hover:text-pink-400 py-2 border-b border-neutral-900"
+            >Coleções</a
+          >
+          <a
+            href="#customizer"
+            class="mobile-link hover:text-pink-400 py-2 border-b border-neutral-900"
+            >Atelier Interativo</a
+          >
+          <a
+            href="#size-assistant"
+            class="mobile-link hover:text-pink-400 py-2 border-b border-neutral-900"
+            >Couture Fit</a
+          >
+          <a
+            href="#manifesto"
+            class="mobile-link hover:text-pink-400 py-2 border-b border-neutral-900"
+            >A Maison</a
+          >
+          <button
+            id="open-booking-btn-mobile"
+            class="w-full flex items-center justify-center space-x-2 border border-pink-500 bg-pink-950/20 px-5 py-3 rounded-full text-xs tracking-widest uppercase text-white"
+          >
+            <span class="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
+            <span>Agendar Experiência VIP</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO SECTION WITH SLIDESHOW & AMBIENT OVERLAYS -->
+    <section
+      class="relative h-screen w-full flex items-center justify-center overflow-hidden"
+    >
+      <!-- Background Image Slide 1 -->
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=1920&q=90"
+          alt="Elegante vestido longo de cetim"
+          class="w-full h-full object-cover object-center scale-105 filter brightness-[0.4] saturate-[0.85] animate-[subtle-zoom_20s_infinite_alternate]"
+          loading="eager"
+          decoding="async"
+          width="1920"
+          height="1080"
+          fetchpriority="high"
+        />
+      </div>
+
+      <!-- Deep Luxury Vignette Gradients -->
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-neutral-950/80 z-10"
+      >
+      </div>
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-neutral-950/90 via-transparent to-neutral-950/90 z-10"
+      >
+      </div>
+
+      <!-- Hero Content -->
+      <div
+        class="relative z-20 text-center px-6 max-w-4xl mx-auto flex flex-col items-center"
+      >
+        <!-- Badge -->
+        <span
+          class="inline-flex items-center space-x-2 bg-pink-900/40 border border-pink-500/30 px-4 py-1.5 rounded-full text-xs tracking-[0.3em] uppercase text-pink-300 font-medium mb-6 animate-fade-in"
+        >
+          HAUTE COUTURE PARIS - SÃO PAULO
+        </span>
+
+        <!-- Main Slogan -->
+        <h1
+          class="font-display text-5xl md:text-8xl lg:text-9xl font-extralight tracking-wide leading-none text-white mb-6"
+        >
+          Sedução em <br />
+          <span class="italic font-light text-pink-400">Linhas Nobres</span>
+        </h1>
+
+        <!-- Subheading "Sexy sem ser Vulgar" aesthetic description -->
+        <p
+          class="font-sans-custom text-sm md:text-lg text-neutral-300 font-light max-w-xl leading-relaxed tracking-wider mb-10"
+        >
+          Vestidos de alta-costura esculpidos para desenhar silhuetas marcantes.
+          Costas nuas, fendas esculturais e a fluidez impecável da seda pura.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+          <a
+            href="#collections"
+            class="px-8 py-4 bg-pink-600 hover:bg-pink-700 text-white font-medium text-xs tracking-[0.25em] uppercase rounded-full transition-all duration-300 hover:shadow-[0_0_25px_rgba(219,39,119,0.5)] transform hover:-translate-y-0.5 text-center"
+          >
+            Descobrir Coleção
+          </a>
+          <a
+            href="#customizer"
+            class="px-8 py-4 border border-white/20 hover:border-pink-400 hover:text-pink-400 text-white font-medium text-xs tracking-[0.25em] uppercase rounded-full transition-all duration-300 bg-black/40 backdrop-blur-sm text-center"
+          >
+            Atelier Sob Medida
+          </a>
+        </div>
+      </div>
+
+      <!-- Luxury Accent Details (Bottom Indicator) -->
+      <div
+        class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center space-y-2 opacity-80"
+      >
+        <span class="text-[9px] tracking-[0.3em] uppercase text-pink-400/80"
+          >Deslizar para a Elegância</span
+        >
+        <div
+          class="w-[1px] h-12 bg-gradient-to-b from-pink-500 to-transparent animate-bounce"
+        >
+        </div>
+      </div>
+    </section>
+
+    <!-- KEY HIGHLIGHTS / UNIQUE SELLING POINTS -->
+    <section class="py-16 bg-neutral-950 border-y border-neutral-900">
+      <div
+        class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10"
+      >
+        <!-- Feature 1 -->
+        <div
+          class="flex flex-col items-center text-center p-6 border border-neutral-900 hover:border-pink-900/30 rounded-2xl bg-neutral-900/10 transition-all duration-300"
+        >
+          <div
+            class="w-12 h-12 rounded-full bg-pink-950/30 flex items-center justify-center text-pink-400 mb-4 border border-pink-900/30"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+              ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+              ></path></svg
+            >
+          </div>
+          <h3
+            class="font-display text-xl tracking-wider font-semibold text-white mb-2"
+          >
+            Exclusividade Absoluta
+          </h3>
+          <p class="text-xs text-neutral-400 leading-relaxed max-w-xs">
+            Produção ultralimitada de cada peça, garantindo que sua aparição
+            seja única e inesquecível.
+          </p>
+        </div>
+        <!-- Feature 2 -->
+        <div
+          class="flex flex-col items-center text-center p-6 border border-neutral-900 hover:border-pink-900/30 rounded-2xl bg-neutral-900/10 transition-all duration-300"
+        >
+          <div
+            class="w-12 h-12 rounded-full bg-pink-950/30 flex items-center justify-center text-pink-400 mb-4 border border-pink-900/30"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+              ><path
+                d="m12 3-1.912 5.886H3.874l5.017 3.645L6.978 18.42 12 14.775l5.022 3.645-1.913-5.889 5.017-3.645h-6.214L12 3z"
+              ></path></svg
+            >
+          </div>
+          <h3
+            class="font-display text-xl tracking-wider font-semibold text-white mb-2"
+          >
+            Sedas & Rendas Importadas
+          </h3>
+          <p class="text-xs text-neutral-400 leading-relaxed max-w-xs">
+            Matérias-primas nobres selecionadas diretamente nas fiações mais
+            exclusivas de Lyon e Como.
+          </p>
+        </div>
+        <!-- Feature 3 -->
+        <div
+          class="flex flex-col items-center text-center p-6 border border-neutral-900 hover:border-pink-900/30 rounded-2xl bg-neutral-900/10 transition-all duration-300"
+        >
+          <div
+            class="w-12 h-12 rounded-full bg-pink-950/30 flex items-center justify-center text-pink-400 mb-4 border border-pink-900/30"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              viewBox="0 0 24 24"
+              ><rect x="3" y="4" width="18" height="18" rx="2" ry="2"
+              ></rect><line x1="16" y1="2" x2="16" y2="6"></line><line
+                x1="8"
+                y1="2"
+                x2="8"
+                y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg
+            >
+          </div>
+          <h3
+            class="font-display text-xl tracking-wider font-semibold text-white mb-2"
+          >
+            Ajuste sob Medida (Atelier)
+          </h3>
+          <p class="text-xs text-neutral-400 leading-relaxed max-w-xs">
+            Nossas costureiras adaptam milimetricamente cada curva ao seu corpo
+            em sessões de prova privativas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY & COLLECTIONS (Interactive Filters) -->
+    <section id="collections" class="py-24 bg-black relative">
+      <div class="max-w-7xl mx-auto px-6">
+        <!-- Header -->
+        <div
+          class="flex flex-col md:flex-row md:items-end justify-between mb-16 reveal"
+        >
+          <div>
+            <span
+              class="text-xs font-semibold tracking-[0.2em] text-pink-500 uppercase block mb-3"
+              >La Collection Privée</span
+            >
+            <h2 class="font-display text-4xl md:text-6xl text-white font-light">
+              As Silhuetas da Noite
+            </h2>
+          </div>
+          <!-- Tabs Filters -->
+          <div
+            class="flex flex-wrap gap-2 mt-6 md:mt-0 border-b border-neutral-900 pb-2 md:pb-0"
+          >
+            <button
+              class="filter-tab active px-5 py-2.5 text-xs font-semibold tracking-widest uppercase transition-all duration-300 text-pink-400 border-b-2 border-pink-500"
+              data-category="all"
+            >
+              Ver Todos
+            </button>
+            <button
+              class="filter-tab px-5 py-2.5 text-xs font-semibold tracking-widest uppercase text-neutral-400 hover:text-white transition-all duration-300 border-b-2 border-transparent"
+              data-category="gala"
+            >
+              Gala Premium
+            </button>
+            <button
+              class="filter-tab px-5 py-2.5 text-xs font-semibold tracking-widest uppercase text-neutral-400 hover:text-white transition-all duration-300 border-b-2 border-transparent"
+              data-category="carpet"
+            >
+              Red Carpet
+            </button>
+            <button
+              class="filter-tab px-5 py-2.5 text-xs font-semibold tracking-widest uppercase text-neutral-400 hover:text-white transition-all duration-300 border-b-2 border-transparent"
+              data-category="minimalist"
+            >
+              Fendas & Minimalistas
+            </button>
+          </div>
+        </div>
+
+        <!-- Collections Grid -->
+        <div
+          id="collections-grid"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          <!-- Item 1: Midnight Whisper (Red Carpet) -->
+          <div
+            class="collection-item group flex flex-col bg-neutral-950 border border-neutral-900 rounded-3xl overflow-hidden transition-all duration-500 hover:border-pink-900/40 hover:shadow-[0_10px_30px_rgba(219,39,119,0.1)]"
+            data-category="carpet"
+          >
+            <div class="relative overflow-hidden aspect-[3/4]">
+              <img
+                src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80"
+                alt="Vestido Longo Preto Imperial"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+                width="800"
+                height="1200"
+                decoding="async"
+              />
+              <span
+                class="absolute top-4 left-4 bg-black/75 backdrop-blur-md text-pink-300 text-[10px] font-semibold tracking-[0.2em] px-3 py-1.5 rounded-full uppercase"
+              >
+                Edição Limitada (7 Peças)
+              </span>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="font-display text-2xl font-light text-white mb-2">
+                Midnight Whisper
+              </h3>
+              <p
+                class="text-xs text-neutral-400 leading-relaxed mb-4 flex-grow"
+              >
+                Costas totalmente nuas delineadas por correntes delicadas em
+                banho de ouro rosé. Uma fenda lateral esculpida que flui
+                suntuosamente.
+              </p>
+              <div
+                class="flex items-center justify-between mt-auto pt-4 border-t border-neutral-900"
+              >
+                <span class="text-pink-400 font-medium tracking-wider text-sm"
+                  >Sob Consulta</span
+                >
+                <button
+                  class="add-to-bag-btn flex items-center space-x-1 text-[10px] tracking-widest uppercase font-semibold text-white hover:text-pink-400 transition-colors duration-300"
+                  data-item="Midnight Whisper"
+                >
+                  <span>Adicionar à Sacola</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"
+                    ></path></svg
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2: Aurelia Gold (Gala Premium) -->
+          <div
+            class="collection-item group flex flex-col bg-neutral-950 border border-neutral-900 rounded-3xl overflow-hidden transition-all duration-500 hover:border-pink-900/40 hover:shadow-[0_10px_30px_rgba(219,39,119,0.1)]"
+            data-category="gala"
+          >
+            <div class="relative overflow-hidden aspect-[3/4]">
+              <img
+                src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=800&q=80"
+                alt="Vestido Longo Aurelia Gold"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+                width="800"
+                height="1200"
+                decoding="async"
+              />
+              <span
+                class="absolute top-4 left-4 bg-black/75 backdrop-blur-md text-pink-300 text-[10px] font-semibold tracking-[0.2em] px-3 py-1.5 rounded-full uppercase"
+              >
+                Best Seller
+              </span>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="font-display text-2xl font-light text-white mb-2">
+                Aurelia Gold
+              </h3>
+              <p
+                class="text-xs text-neutral-400 leading-relaxed mb-4 flex-grow"
+              >
+                Confeccionado em lurex de seda pura com drapeado helênico feito
+                à mão. Transmite opulência, sensualidade marcante e leveza
+                incomparável.
+              </p>
+              <div
+                class="flex items-center justify-between mt-auto pt-4 border-t border-neutral-900"
+              >
+                <span class="text-pink-400 font-medium tracking-wider text-sm"
+                  >Sob Consulta</span
+                >
+                <button
+                  class="add-to-bag-btn flex items-center space-x-1 text-[10px] tracking-widest uppercase font-semibold text-white hover:text-pink-400 transition-colors duration-300"
+                  data-item="Aurelia Gold"
+                >
+                  <span>Adicionar à Sacola</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"
+                    ></path></svg
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3: Silk Rose Seduction (Minimalist) -->
+          <div
+            class="collection-item group flex flex-col bg-neutral-950 border border-neutral-900 rounded-3xl overflow-hidden transition-all duration-500 hover:border-pink-900/40 hover:shadow-[0_10px_30px_rgba(219,39,119,0.1)]"
+            data-category="minimalist"
+          >
+            <div class="relative overflow-hidden aspect-[3/4]">
+              <img
+                src="https://images.unsplash.com/photo-1700487358341-8986b9f61e22?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Vestido Longo Silk Rose"
+                loading="lazy"
+                width="688"
+                height="1032"
+                decoding="async"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <span
+                class="absolute top-4 left-4 bg-black/75 backdrop-blur-md text-pink-300 text-[10px] font-semibold tracking-[0.2em] px-3 py-1.5 rounded-full uppercase"
+              >
+                Exclusivo Atelier
+              </span>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="font-display text-2xl font-light text-white mb-2">
+                Silk Rose Seduction
+              </h3>
+              <p
+                class="text-xs text-neutral-400 leading-relaxed mb-4 flex-grow"
+              >
+                Gola alta estruturada com fenda frontal profunda e sutil.
+                Costura invisível que abraça os quadris com sofisticação
+                vanguardista.
+              </p>
+              <div
+                class="flex items-center justify-between mt-auto pt-4 border-t border-neutral-900"
+              >
+                <span class="text-pink-400 font-medium tracking-wider text-sm"
+                  >Sob Consulta</span
+                >
+                <button
+                  class="add-to-bag-btn flex items-center space-x-1 text-[10px] tracking-widest uppercase font-semibold text-white hover:text-pink-400 transition-colors duration-300"
+                  data-item="Silk Rose Seduction"
+                >
+                  <span>Adicionar à Sacola</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"
+                    ></path></svg
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 4: Velvet Noir Muse (Gala Premium) -->
+          <div
+            class="collection-item group flex flex-col bg-neutral-950 border border-neutral-900 rounded-3xl overflow-hidden transition-all duration-500 hover:border-pink-900/40 hover:shadow-[0_10px_30px_rgba(219,39,119,0.1)]"
+            data-category="gala"
+          >
+            <div class="relative overflow-hidden aspect-[3/4]">
+              <img
+                src="https://images.unsplash.com/photo-1741816219305-827580cab505?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Vestido Longo Veludo Negro"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+                width="627"
+                height="752"
+                decoding="async"
+              />
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="font-display text-2xl font-light text-white mb-2">
+                Velvet Noir Muse
+              </h3>
+              <p
+                class="text-xs text-neutral-400 leading-relaxed mb-4 flex-grow"
+              >
+                Veludo italiano super macio com toque elástico e modelagem
+                corpete. Decote coração esculpido que transborda a feminilidade
+                clássica do cinema antigo.
+              </p>
+              <div
+                class="flex items-center justify-between mt-auto pt-4 border-t border-neutral-900"
+              >
+                <span class="text-pink-400 font-medium tracking-wider text-sm"
+                  >Sob Consulta</span
+                >
+                <button
+                  class="add-to-bag-btn flex items-center space-x-1 text-[10px] tracking-widest uppercase font-semibold text-white hover:text-pink-400 transition-colors duration-300"
+                  data-item="Velvet Noir Muse"
+                >
+                  <span>Adicionar à Sacola</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"
+                    ></path></svg
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 5: Emerald Temptation (Red Carpet) -->
+          <div
+            class="collection-item group flex flex-col bg-neutral-950 border border-neutral-900 rounded-3xl overflow-hidden transition-all duration-500 hover:border-pink-900/40 hover:shadow-[0_10px_30px_rgba(219,39,119,0.1)]"
+            data-category="carpet"
+          >
+            <div class="relative overflow-hidden aspect-[3/4]">
+              <img
+                src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?auto=format&fit=crop&w=800&q=80"
+                alt="Vestido Longo Verde Esmeralda"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+                width="800"
+                height="1200"
+                decoding="async"
+              />
+              <span
+                class="absolute top-4 left-4 bg-pink-900/80 backdrop-blur-md text-white text-[10px] font-semibold tracking-[0.2em] px-3 py-1.5 rounded-full uppercase animate-pulse"
+              >
+                Apenas 2 Unidades
+              </span>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="font-display text-2xl font-light text-white mb-2">
+                Emerald Temptation
+              </h3>
+              <p
+                class="text-xs text-neutral-400 leading-relaxed mb-4 flex-grow"
+              >
+                Tom esmeralda magnético em crepe georgette. O drapeado
+                assimétrico se move de maneira orgânica e audaciosa, criando uma
+                aura misteriosa e aristocrática.
+              </p>
+              <div
+                class="flex items-center justify-between mt-auto pt-4 border-t border-neutral-900"
+              >
+                <span class="text-pink-400 font-medium tracking-wider text-sm"
+                  >Sob Consulta</span
+                >
+                <button
+                  class="add-to-bag-btn flex items-center space-x-1 text-[10px] tracking-widest uppercase font-semibold text-white hover:text-pink-400 transition-colors duration-300"
+                  data-item="Emerald Temptation"
+                >
+                  <span>Adicionar à Sacola</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"
+                    ></path></svg
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 6: Pearl Devotion (Minimalist) -->
+          <div
+            class="collection-item group flex flex-col bg-neutral-950 border border-neutral-900 rounded-3xl overflow-hidden transition-all duration-500 hover:border-pink-900/40 hover:shadow-[0_10px_30px_rgba(219,39,119,0.1)]"
+            data-category="minimalist"
+          >
+            <div class="relative overflow-hidden aspect-[3/4]">
+              <img
+                src="https://images.unsplash.com/photo-1777713272516-e7b2216fe15e?q=80&w=701&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Vestido Longo Pérola Alva"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+                width="701"
+                height="1000"
+                decoding="async"
+              />
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="font-display text-2xl font-light text-white mb-2">
+                Pearl Devotion
+              </h3>
+              <p
+                class="text-xs text-neutral-400 leading-relaxed mb-4 flex-grow"
+              >
+                Design minimalista em cetim de seda pesada com caimento sereia.
+                Uma fenda posterior que atrai olhares sem perder o mistério
+                majestoso.
+              </p>
+              <div
+                class="flex items-center justify-between mt-auto pt-4 border-t border-neutral-900"
+              >
+                <span class="text-pink-400 font-medium tracking-wider text-sm"
+                  >Sob Consulta</span
+                >
+                <button
+                  class="add-to-bag-btn flex items-center space-x-1 text-[10px] tracking-widest uppercase font-semibold text-white hover:text-pink-400 transition-colors duration-300"
+                  data-item="Pearl Devotion"
+                >
+                  <span>Adicionar à Sacola</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"
+                    ></path></svg
+                  >
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE ATELIER CUSTOMIZER SECTION -->
+    <section
+      id="customizer"
+      class="py-24 bg-neutral-950 relative overflow-hidden"
+    >
+      <!-- Glow effects -->
+      <div
+        class="absolute top-1/4 -right-24 w-96 h-96 bg-pink-900/10 rounded-full blur-[120px] pointer-events-none"
+      >
+      </div>
+      <div
+        class="absolute bottom-1/4 -left-24 w-96 h-96 bg-pink-900/10 rounded-full blur-[120px] pointer-events-none"
+      >
+      </div>
+
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <!-- Column 1: Configurator Image Showcase (5/12 cols) -->
+          <div class="lg:col-span-6 relative flex justify-center">
+            <div
+              class="relative w-full max-w-md aspect-[3/4] rounded-3xl overflow-hidden border border-neutral-800 shadow-2xl"
+            >
+              <!-- Customizer Main Dress Image -->
+              <img
+                id="customizer-img"
+                src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80"
+                alt="Customizar Vestido"
+                class="w-full h-full object-cover transition-all duration-700"
+                loading="lazy"
+                width="800"
+                height="1200"
+                decoding="async"
+              />
+              <!-- Premium glass details -->
+              <div
+                class="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md p-4 rounded-2xl border border-white/5 flex justify-between items-center"
+              >
+                <div>
+                  <p
+                    id="dress-active-title"
+                    class="font-display text-xl text-white font-medium"
+                  >
+                    L'Amour Absolu
+                  </p>
+                  <p
+                    id="dress-active-desc"
+                    class="text-[10px] text-pink-300 tracking-wider"
+                  >
+                    Silhueta Sereia • Seda Imperial
+                  </p>
+                </div>
+                <div class="flex flex-col items-end">
+                  <span class="text-xs text-neutral-400">Atelier ID:</span>
+                  <span
+                    id="dress-id"
+                    class="text-xs font-semibold text-white tracking-widest"
+                    >#DM-0938</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Customization Controls (6/12 cols) -->
+          <div class="lg:col-span-6 flex flex-col justify-center">
+            <span
+              class="text-xs font-semibold tracking-[0.2em] text-pink-500 uppercase block mb-3"
+              >Atelier Interativo Derriere</span
+            >
+            <h2
+              class="font-display text-4xl md:text-5xl text-white font-light leading-tight mb-6"
+            >
+              Modele Seu <span class="italic text-pink-400"
+                >Vestido de Sonho</span
+              >
+            </h2>
+            <p class="text-xs text-neutral-300 leading-relaxed mb-8">
+              Explore nossa alta-costura. Selecione entre texturas raras, cores
+              profundas e decotes desenhados milimetricamente pelas mãos de
+              nossos artesãos. Descubra qual combinação melhor revela sua
+              elegância instintiva.
+            </p>
+
+            <!-- Option 1: Cor do Vestido (Swatches) -->
+            <div class="mb-8">
+              <label
+                class="text-[10px] tracking-[0.25em] uppercase font-semibold text-neutral-400 block mb-4"
+                >Selecione a Tonalidade Primária</label
+              >
+              <div class="flex space-x-4">
+                <!-- Swatch 1: Preto Profundo -->
+                <button
+                  class="swatch-btn active w-12 h-12 rounded-full p-1 border-2 border-pink-500 bg-black transition-all duration-300"
+                  data-color="Preto Profundo"
+                  data-img="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=800&q=80"
+                  data-id="#DM-0938"
+                  data-title="L'Amour Absolu • Noir"
+                  data-desc="Silhueta Sereia • Seda Imperial Noir"
+                  aria-label="Preto Profundo"
+                >
+                  <div
+                    class="w-full h-full rounded-full bg-neutral-900 border border-neutral-800"
+                  >
+                  </div>
+                </button>
+                <!-- Swatch 2: Rosa Blush -->
+                <button
+                  class="swatch-btn w-12 h-12 rounded-full p-1 border-2 border-transparent hover:border-pink-500/50 bg-black transition-all duration-300"
+                  data-color="Rosa Blush"
+                  data-img="https://images.unsplash.com/photo-1518049360967-d3d2424b94a5?auto=format&fit=crop&w=800&q=80"
+                  data-id="#DM-4412"
+                  data-title="L'Amour Absolu • Blush Rose"
+                  data-desc="Caimento fluido • Seda Pura Francesa"
+                  aria-label="Rosa Blush"
+                >
+                  <div class="w-full h-full rounded-full bg-pink-300"></div>
+                </button>
+                <!-- Swatch 3: Vermelho Sedução -->
+                <button
+                  class="swatch-btn w-12 h-12 rounded-full p-1 border-2 border-transparent hover:border-pink-500/50 bg-black transition-all duration-300"
+                  data-color="Vermelho Sedução"
+                  data-img="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=800&q=80"
+                  data-id="#DM-7730"
+                  data-title="L'Amour Absolu • Rouge Sensuel"
+                  data-desc="Costas Nuas • Lurex Brilhante de Alta Costura"
+                  aria-label="Vermelho Sedução"
+                >
+                  <div class="w-full h-full rounded-full bg-red-700"></div>
+                </button>
+              </div>
+              <p class="text-[11px] text-pink-400 font-medium mt-3">
+                Tonalidade selecionada: <span
+                  id="color-label"
+                  class="text-white">Preto Profundo</span
+                >
+              </p>
+            </div>
+
+            <!-- Option 2: Fenda e Acabamentos (Dropdown de Simulação) -->
+            <div class="mb-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label
+                  for="slit-select"
+                  class="text-[10px] tracking-[0.2em] uppercase font-semibold text-neutral-400 block mb-2"
+                  >Fenda e Caimento</label
+                >
+                <select
+                  id="slit-select"
+                  class="w-full bg-neutral-900 border border-neutral-800 text-xs text-neutral-300 px-4 py-3 rounded-xl focus:outline-none focus:border-pink-500 transition-colors duration-300"
+                >
+                  <option value="sculpted"
+                    >Fenda Escultural Lateral (Padrão)</option
+                  >
+                  <option value="deep-back"
+                    >Decote Profundo nas Costas s/ Fenda</option
+                  >
+                  <option value="classic-regal"
+                    >Imperial sem Fendas (Clássico)</option
+                  >
+                </select>
+              </div>
+              <div>
+                <label
+                  for="fabric-select"
+                  class="text-[10px] tracking-[0.2em] uppercase font-semibold text-neutral-400 block mb-2"
+                  >Material Premium</label
+                >
+                <select
+                  id="fabric-select"
+                  class="w-full bg-neutral-900 border border-neutral-800 text-xs text-neutral-300 px-4 py-3 rounded-xl focus:outline-none focus:border-pink-500 transition-colors duration-300"
+                >
+                  <option value="silk">Seda Pura Francesa Dupla</option>
+                  <option value="satin">Cetim de Milão de Altíssimo Peso</option
+                  >
+                  <option value="velvet">Veludo Nobre com Elastano</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Finalizing actions -->
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button
+                id="add-custom-btn"
+                class="flex-grow px-8 py-4 bg-pink-600 hover:bg-pink-700 text-white font-medium text-xs tracking-[0.25em] uppercase rounded-full transition-all duration-300 hover:shadow-[0_0_20px_rgba(219,39,119,0.4)]"
+              >
+                Salvar Criação na Sacola
+              </button>
+              <button
+                id="custom-consulting-btn"
+                class="px-8 py-4 border border-white/20 hover:border-pink-400 hover:text-pink-400 text-white font-medium text-xs tracking-[0.25em] uppercase rounded-full transition-all duration-300 bg-neutral-900/40"
+              >
+                Falar com Estilista
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MANIFESTO BRAND MOMENT (Visual "Sexy sem ser Vulgar") -->
+    <section
+      id="manifesto"
+      class="relative py-32 bg-black overflow-hidden border-t border-neutral-900"
+    >
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1920&q=80"
+          alt="Alta costura elegante"
+          class="w-full h-full object-cover filter brightness-[0.25]"
+		  loading="lazy"
+		  decoding="async"
+		  width="1920"
+		  height="1080"
+        />
+      </div>
+
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/40 to-neutral-950 z-10"
+      >
+      </div>
+
+      <div class="relative z-20 max-w-4xl mx-auto px-6 text-center">
+        <span
+          class="text-xs font-semibold tracking-[0.3em] text-pink-500 uppercase block mb-4"
+          >Filosofia de Criação</span
+        >
+        <h2
+          class="font-display text-4xl md:text-7xl text-white font-extralight mb-8 leading-tight"
+        >
+          A Arte da <span class="italic text-pink-300">Sugestão</span>
+        </h2>
+        <p
+          class="font-sans-custom text-sm md:text-xl text-neutral-300 font-light leading-relaxed tracking-wider mb-8 max-w-2xl mx-auto"
+        >
+          "Para a mulher Derriere, a sensualidade não grita; ela sussurra. É o
+          mistério que habita na perfeição do corte, no balanço hipnótico da
+          seda, nas fendas que só aparecem ao caminhar. Criamos armaduras de
+          pura sedução e dignidade."
+        </p>
+        <div
+          class="w-16 h-[1px] bg-gradient-to-r from-transparent via-pink-500 to-transparent mx-auto"
+        >
+        </div>
+        <p class="text-[10px] tracking-[0.3em] text-pink-400 uppercase mt-4">
+          Maison Derriere • São Paulo • Paris
+        </p>
+      </div>
+    </section>
+
+    <!-- COUTURE FIT / SIZE GUIDE ASSISTANT -->
+    <section
+      id="size-assistant"
+      class="py-24 bg-neutral-950 border-t border-neutral-900"
+    >
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <!-- Column 1: Info and Image -->
+          <div class="lg:col-span-5 reveal">
+            <span
+              class="text-xs font-semibold tracking-[0.2em] text-pink-500 uppercase block mb-3"
+              >Modelagem Perfeita</span
+            >
+            <h2
+              class="font-display text-4xl md:text-5xl text-white font-light mb-6"
+            >
+              Guia Couture Fit
+            </h2>
+            <p class="text-xs text-neutral-300 leading-relaxed mb-6">
+              A alta-costura exige caimento impecável. Nossa calculadora
+              inteligente utiliza as tabelas de medidas europeias de luxo para
+              sugerir o tamanho base perfeito. Lembramos que todo vestido
+              Derriere inclui serviço de alfaiataria em nosso atelier físico.
+            </p>
+            <div
+              class="relative rounded-2xl overflow-hidden border border-neutral-900 aspect-[16/10] bg-neutral-900/30 p-6"
+            >
+              <h4 class="font-display text-xl text-pink-300 mb-2">
+                A Importância das Provas
+              </h4>
+              <p class="text-[11px] text-neutral-400 leading-relaxed">
+                Nossos vestidos são estruturados de forma a manter sustentação
+                total sem necessidade de lingeries aparentes, permitindo decotes
+                ousados e costas totalmente livres com segurança absoluta.
+              </p>
+            </div>
+          </div>
+
+          <!-- Column 2: Calculator (7/12 cols) -->
+          <div
+            class="lg:col-span-7 bg-neutral-900/20 border border-neutral-900 p-8 rounded-3xl backdrop-blur-sm"
+          >
+            <h3 class="font-display text-2xl text-white mb-6">
+              Encontre Seu Caimento
+            </h3>
+
+            <form id="size-calc-form" class="space-y-6">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <!-- Bust Input -->
+                <div>
+                  <label
+                    for="bust-input"
+                    class="text-[10px] tracking-[0.2em] uppercase font-semibold text-neutral-400 block mb-2"
+                    >Busto (cm)</label
+                  >
+                  <input
+                    type="number"
+                    id="bust-input"
+                    placeholder="ex: 88"
+                    min="70"
+                    max="130"
+                    required
+                    class="w-full bg-neutral-900 border border-neutral-800 text-xs text-white px-4 py-3 rounded-xl focus:outline-none focus:border-pink-500 transition-colors duration-300"
+                  />
+                </div>
+                <!-- Waist Input -->
+                <div>
+                  <label
+                    for="waist-input"
+                    class="text-[10px] tracking-[0.2em] uppercase font-semibold text-neutral-400 block mb-2"
+                    >Cintura (cm)</label
+                  >
+                  <input
+                    type="number"
+                    id="waist-input"
+                    placeholder="ex: 68"
+                    min="50"
+                    max="110"
+                    required
+                    class="w-full bg-neutral-900 border border-neutral-800 text-xs text-white px-4 py-3 rounded-xl focus:outline-none focus:border-pink-500 transition-colors duration-300"
+                  />
+                </div>
+                <!-- Hips Input -->
+                <div>
+                  <label
+                    for="hips-input"
+                    class="text-[10px] tracking-[0.2em] uppercase font-semibold text-neutral-400 block mb-2"
+                    >Quadril (cm)</label
+                  >
+                  <input
+                    type="number"
+                    id="hips-input"
+                    placeholder="ex: 98"
+                    min="75"
+                    max="140"
+                    required
+                    class="w-full bg-neutral-900 border border-neutral-800 text-xs text-white px-4 py-3 rounded-xl focus:outline-none focus:border-pink-500 transition-colors duration-300"
+                  />
+                </div>
+              </div>
+
+              <div class="pt-4">
+                <button
+                  type="submit"
+                  class="w-full sm:w-auto px-8 py-3.5 bg-neutral-100 hover:bg-pink-600 hover:text-white text-neutral-950 font-medium text-xs tracking-[0.25em] uppercase rounded-full transition-all duration-300"
+                >
+                  Calcular Tamanho
+                </button>
+              </div>
+            </form>
+
+            <!-- Result Box -->
+            <div
+              id="size-result"
+              class="hidden mt-8 p-6 bg-pink-950/20 border border-pink-900/30 rounded-2xl animate-fade-in"
+            >
+              <div
+                class="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+              >
+                <div>
+                  <p
+                    class="text-[10px] tracking-[0.2em] uppercase text-pink-400 font-semibold mb-1"
+                  >
+                    Seu tamanho recomendado:
+                  </p>
+                  <h4
+                    id="recommended-size"
+                    class="font-display text-4xl text-white font-bold"
+                  >
+                    Derriere 38 (M)
+                  </h4>
+                  <p class="text-[11px] text-neutral-400 mt-2">
+                    Baseado no sistema internacional de modelagem de luxo.
+                  </p>
+                </div>
+                <button
+                  id="size-book-btn"
+                  class="px-5 py-2.5 border border-pink-500 text-pink-400 hover:bg-pink-600 hover:text-white text-[10px] tracking-[0.2em] uppercase font-semibold rounded-full transition-all duration-300 self-start sm:self-center"
+                >
+                  Confirmar em Prova VIP
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIP BOOKING MODAL (Atelier Experience) -->
+    <div
+      id="booking-modal"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden transition-all duration-300"
+    >
+      <div
+        class="relative w-full max-w-lg bg-neutral-950 border border-neutral-800 p-8 rounded-3xl shadow-2xl overflow-y-auto max-h-[90vh]"
+      >
+        <!-- Close Button -->
+        <button
+          id="close-booking-btn"
+          class="absolute top-6 right-6 p-2 text-neutral-400 hover:text-white transition-colors duration-300"
+          aria-label="Fechar"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><line x1="18" y1="6" x2="6" y2="18"></line><line
+              x1="6"
+              y1="6"
+              x2="18"
+              y2="18"></line></svg
+          >
+        </button>
+
+        <span
+          class="text-[10px] tracking-[0.3em] text-pink-500 uppercase block mb-2 font-semibold"
+          >Atelier Privé</span
+        >
+        <h3 class="font-display text-3xl text-white font-light mb-6">
+          Agendar Experiência VIP
+        </h3>
+        <p class="text-xs text-neutral-400 leading-relaxed mb-6">
+          Sua visita ao nosso showroom inclui consultoria de estilo exclusiva
+          com champanhe de boas-vindas, análise de coloração pessoal e prova
+          privada do catálogo completo.
+        </p>
+
+        <!-- Booking Form -->
+        <form id="booking-form" class="space-y-4">
+          <div>
+            <label
+              for="book-name"
+              class="text-[10px] tracking-[0.2em] uppercase font-semibold text-neutral-400 block mb-2"
+              >Nome Completo</label
+            >
+            <input
+              type="text"
+              id="book-name"
+              required
+              placeholder="Sua Graça"
+              class="w-full bg-neutral-900 border border-neutral-800 text-xs text-white px-4 py-3 rounded-xl focus:outline-none focus:border-pink-500 transition-colors duration-300"
+            />
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label
+                for="book-email"
+                class="text-[10px] tracking-[0.2em] uppercase font-semibold text-neutral-400 block mb-2"
+                >E-mail de Contato</label
+              >
+              <input
+                type="email"
+                id="book-email"
+                required
+                placeholder="seu@luxo.com"
+                class="w-full bg-neutral-900 border border-neutral-800 text-xs text-white px-4 py-3 rounded-xl focus:outline-none focus:border-pink-500 transition-colors duration-300"
+              />
+            </div>
+            <div>
+              <label
+                for="book-phone"
+                class="text-[10px] tracking-[0.2em] uppercase font-semibold text-neutral-400 block mb-2"
+                >Telefone/WhatsApp</label
+              >
+              <input
+                type="tel"
+                id="book-phone"
+                required
+                placeholder="(11) 99999-9999"
+                class="w-full bg-neutral-900 border border-neutral-800 text-xs text-white px-4 py-3 rounded-xl focus:outline-none focus:border-pink-500 transition-colors duration-300"
+              />
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label
+                for="book-date"
+                class="text-[10px] tracking-[0.2em] uppercase font-semibold text-neutral-400 block mb-2"
+                >Data Desejada</label
+              >
+              <input
+                type="date"
+                id="book-date"
+                required
+                class="w-full bg-neutral-900 border border-neutral-800 text-xs text-white px-4 py-3 rounded-xl focus:outline-none focus:border-pink-500 transition-colors duration-300"
+              />
+            </div>
+            <div>
+              <label
+                for="book-time"
+                class="text-[10px] tracking-[0.2em] uppercase font-semibold text-neutral-400 block mb-2"
+                >Horário Desejado</label
+              >
+              <select
+                id="book-time"
+                class="w-full bg-neutral-900 border border-neutral-800 text-xs text-white px-4 py-3 rounded-xl focus:outline-none focus:border-pink-500 transition-colors duration-300"
+              >
+                <option value="10:00">10:00 - Manhã Exclusiva</option>
+                <option value="14:00">14:00 - Tarde Atelier</option>
+                <option value="16:00">16:00 - Tarde Atelier</option>
+                <option value="19:00">19:00 - Noite Sunset (Champagne)</option>
+              </select>
+            </div>
+          </div>
+          <div class="pt-4">
+            <button
+              type="submit"
+              class="w-full px-8 py-4 bg-pink-600 hover:bg-pink-700 text-white font-medium text-xs tracking-[0.25em] uppercase rounded-full transition-all duration-300"
+            >
+              Confirmar Agendamento de Luxo
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- NEWSLETTER / EXCLUSIVE CLUB (Sexy Minimalist Call) -->
+    <section class="py-24 bg-black border-t border-neutral-900">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="font-display text-4xl text-white font-light mb-4">
+          Adentre ao Nosso Círculo Privado
+        </h2>
+        <p
+          class="text-xs text-neutral-400 tracking-wider mb-8 max-w-md mx-auto leading-relaxed"
+        >
+          Seja a primeira a receber notificações sobre coleções-cápsula
+          exclusivas, eventos VIP e desfiles de moda de alta-costura.
+        </p>
+        <form
+          id="newsletter-form"
+          class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto"
+        >
+          <input
+            type="email"
+            placeholder="Seu melhor e-mail de gala"
+            required
+            class="flex-grow bg-neutral-900 border border-neutral-800 text-xs text-white px-5 py-3.5 rounded-full focus:outline-none focus:border-pink-500 transition-colors duration-300"
+          />
+          <button
+            type="submit"
+            class="px-8 py-3.5 bg-white hover:bg-pink-600 text-neutral-950 hover:text-white font-medium text-xs tracking-[0.25em] uppercase rounded-full transition-all duration-300"
+          >
+            Participar
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer
+      class="bg-neutral-950 text-neutral-400 text-xs py-16 border-t border-neutral-900"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10"
+      >
+        <!-- Logo and Slogan -->
+        <div class="md:col-span-1 flex flex-col space-y-4">
+          <span
+            class="text-2xl font-display font-semibold tracking-widest text-white"
+            >DERRIÈRE</span
+          >
+          <p class="text-[11px] text-neutral-500 leading-relaxed">
+            Sedução esculpida na exatidão de fendas icônicas, luxo intransigente
+            e elegância imensurável para noites eternas.
+          </p>
+        </div>
+        <!-- Menu Cego Links (Coleções) -->
+        <div class="flex flex-col space-y-3">
+          <span
+            class="text-white text-[10px] tracking-[0.2em] uppercase font-bold"
+            >Coleções</span
+          >
+          <a
+            href="#collections"
+            class="hover:text-pink-400 transition-colors duration-300"
+            >Gala Imperial</a
+          >
+          <a
+            href="#collections"
+            class="hover:text-pink-400 transition-colors duration-300"
+            >Noivas Couture</a
+          >
+          <a
+            href="#collections"
+            class="hover:text-pink-400 transition-colors duration-300"
+            >Fendas Supremas</a
+          >
+          <a
+            href="#collections"
+            class="hover:text-pink-400 transition-colors duration-300"
+            >Edições Limitadas</a
+          >
+        </div>
+        <!-- Menu Cego Links (Maison) -->
+        <div class="flex flex-col space-y-3">
+          <span
+            class="text-white text-[10px] tracking-[0.2em] uppercase font-bold"
+            >A Maison</span
+          >
+          <a
+            href="#manifesto"
+            class="hover:text-pink-400 transition-colors duration-300"
+            >Nossa Filosofia</a
+          >
+          <a
+            href="#customizer"
+            class="hover:text-pink-400 transition-colors duration-300"
+            >O Atelier</a
+          >
+          <a
+            href="#size-assistant"
+            class="hover:text-pink-400 transition-colors duration-300"
+            >Guia de Tamanhos</a
+          >
+          <a
+            href="#customizer"
+            class="hover:text-pink-400 transition-colors duration-300"
+            >Imprensa</a
+          >
+        </div>
+        <!-- Contatos Úteis -->
+        <div class="flex flex-col space-y-3">
+          <span
+            class="text-white text-[10px] tracking-[0.2em] uppercase font-bold"
+            >Atelier Privado</span
+          >
+          <p class="text-[11px] text-neutral-500">
+            Alameda Lorena, 1420 - Jardins<br />
+            São Paulo - SP, Brasil
+          </p>
+          <a href="#" class="hover:text-pink-400 transition-colors duration-300"
+            >contato@maisonderriere.com</a
+          >
+          <span class="text-pink-500 font-semibold tracking-wider"
+            >+55 (11) 98765-4321</span
+          >
+        </div>
+      </div>
+
+      <div
+        class="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-neutral-900 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] text-neutral-500"
+      >
+        <p>
+          &copy; 2026 Derrière Maison de Couture. Todos os direitos reservados.
+          Protótipo de Luxo.
+        </p>
+        <div class="flex space-x-6">
+          <a href="#" class="hover:text-white transition-colors duration-300"
+            >Privacidade</a
+          >
+          <a href="#" class="hover:text-white transition-colors duration-300"
+            >Termos de Serviço</a
+          >
+          <a href="#" class="hover:text-white transition-colors duration-300"
+            >Couture Care</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPTS -->
+    <script>
+      // Toast notification helper
+      function showToast(message, type = "success") {
+        const container = document.getElementById("toast-container");
+        if (!container) return;
+
+        const toast = document.createElement("div");
+        toast.className = `flex items-center justify-between gap-4 bg-neutral-900 border border-pink-900/40 p-4 rounded-2xl shadow-2xl transform translate-y-5 opacity-0 transition-all duration-300 border-l-4 ${type === "success" ? "border-l-pink-500" : "border-l-amber-500"}`;
+
+        toast.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="flex-shrink-0 w-2 h-2 rounded-full ${type === "success" ? "bg-pink-500" : "bg-amber-500"}"></span>
+            <p class="text-xs text-neutral-100 font-medium">${message}</p>
+          </div>
+          <button class="text-neutral-500 hover:text-white transition-colors duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        `;
+
+        container.appendChild(toast);
+
+        // Animate slide-in
+        setTimeout(() => {
+          toast.classList.remove("translate-y-5", "opacity-0");
+        }, 10);
+
+        // Remove trigger
+        const closeBtn = toast.querySelector("button");
+        closeBtn?.addEventListener("click", () => {
+          toast.classList.add("translate-y-5", "opacity-0");
+          setTimeout(() => toast.remove(), 300);
+        });
+
+        // Auto remove
+        setTimeout(() => {
+          if (toast.parentNode) {
+            toast.classList.add("translate-y-5", "opacity-0");
+            setTimeout(() => toast.remove(), 300);
+          }
+        }, 4000);
+      }
+
+      // 1. Header scroll effect
+      window.addEventListener("scroll", () => {
+        const header = document.getElementById("main-header");
+        if (!header) return;
+        if (window.scrollY > 50) {
+          header.classList.add(
+            "bg-neutral-950/85",
+            "backdrop-blur-md",
+            "border-neutral-900",
+            "shadow-[0_4px_30px_rgba(0,0,0,0.5)]",
+          );
+          header.classList.remove("h-24");
+          header.classList.add("h-20");
+        } else {
+          header.classList.remove(
+            "bg-neutral-950/85",
+            "backdrop-blur-md",
+            "border-neutral-900",
+            "shadow-[0_4px_30px_rgba(0,0,0,0.5)]",
+          );
+          header.classList.remove("h-20");
+          header.classList.add("h-24");
+        }
+      });
+
+      // 2. Mobile Menu Toggle
+      const mobileToggle = document.getElementById("mobile-menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const iconOpen = document.getElementById("menu-icon-open");
+      const iconClose = document.getElementById("menu-icon-close");
+
+      if (mobileToggle && mobileMenu) {
+        mobileToggle.addEventListener("click", () => {
+          const isOpen = !mobileMenu.classList.contains("hidden");
+          if (isOpen) {
+            mobileMenu.classList.add("hidden");
+            iconOpen?.classList.remove("hidden");
+            iconClose?.classList.add("hidden");
+          } else {
+            mobileMenu.classList.remove("hidden");
+            iconOpen?.classList.add("hidden");
+            iconClose?.classList.remove("hidden");
+          }
+        });
+      }
+
+      // Close mobile menu when links are clicked
+      document.querySelectorAll(".mobile-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu?.classList.add("hidden");
+          iconOpen?.classList.remove("hidden");
+          iconClose?.classList.add("hidden");
+        });
+      });
+
+      // 3. Collection Filter logic
+      const tabs = document.querySelectorAll(".filter-tab");
+      const items = document.querySelectorAll(".collection-item");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          tabs.forEach((t) => {
+            t.classList.remove("active", "text-pink-400", "border-pink-500");
+            t.classList.add("text-neutral-400", "border-transparent");
+          });
+
+          tab.classList.add("active", "text-pink-400", "border-pink-500");
+          tab.classList.remove("text-neutral-400", "border-transparent");
+
+          const category = tab.getAttribute("data-category");
+
+          items.forEach((item) => {
+            const itemCat = item.getAttribute("data-category");
+            if (category === "all" || itemCat === category) {
+              item.style.display = "flex";
+              setTimeout(() => {
+                item.style.opacity = "1";
+                item.style.transform = "translateY(0)";
+              }, 50);
+            } else {
+              item.style.opacity = "0";
+              item.style.transform = "translateY(15px)";
+              setTimeout(() => {
+                item.style.display = "none";
+              }, 300);
+            }
+          });
+        });
+      });
+
+      // 4. Shopping Bag Simulator
+      let bagCount = 0;
+      const bagCountBadge = document.getElementById("bag-count");
+      const bagButtons = document.querySelectorAll(".add-to-bag-btn");
+
+      bagButtons.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          const itemName = btn.getAttribute("data-item");
+          bagCount++;
+          if (bagCountBadge) {
+            bagCountBadge.textContent = bagCount.toString();
+            bagCountBadge.classList.add("scale-125");
+            setTimeout(() => bagCountBadge.classList.remove("scale-125"), 200);
+          }
+          showToast(
+            `"${itemName}" adicionado ao seu atendimento personalizado.`,
+          );
+        });
+      });
+
+      // 5. Interactive Atelier Customizer
+      const swatchButtons = document.querySelectorAll(".swatch-btn");
+      const customizerImg = document.getElementById("customizer-img");
+      const colorLabel = document.getElementById("color-label");
+      const activeTitle = document.getElementById("dress-active-title");
+      const activeDesc = document.getElementById("dress-active-desc");
+      const activeId = document.getElementById("dress-id");
+
+      swatchButtons.forEach((swatch) => {
+        swatch.addEventListener("click", () => {
+          swatchButtons.forEach((s) => {
+            s.classList.remove("active", "border-pink-500");
+            s.classList.add("border-transparent");
+          });
+
+          swatch.classList.add("active", "border-pink-500");
+          swatch.classList.remove("border-transparent");
+
+          // Extract values
+          const colorName = swatch.getAttribute("data-color");
+          const imageUrl = swatch.getAttribute("data-img");
+          const dressIdStr = swatch.getAttribute("data-id");
+          const titleStr = swatch.getAttribute("data-title");
+          const descStr = swatch.getAttribute("data-desc");
+
+          // Apply changes smoothly
+          if (customizerImg) {
+            customizerImg.style.opacity = "0.3";
+            setTimeout(() => {
+              customizerImg.setAttribute("src", imageUrl);
+              customizerImg.style.opacity = "1";
+            }, 300);
+          }
+
+          if (colorLabel) colorLabel.textContent = colorName;
+          if (activeTitle) activeTitle.textContent = titleStr;
+          if (activeDesc) activeDesc.textContent = descStr;
+          if (activeId) activeId.textContent = dressIdStr;
+
+          showToast(`Tonalidade alterada para: ${colorName}`);
+        });
+      });
+
+      // Saving Custom dress creation
+      const addCustomBtn = document.getElementById("add-custom-btn");
+      if (addCustomBtn) {
+        addCustomBtn.addEventListener("click", () => {
+          const currentTitle = activeTitle
+            ? activeTitle.textContent
+            : "Criação Exclusiva";
+          bagCount++;
+          if (bagCountBadge) {
+            bagCountBadge.textContent = bagCount.toString();
+          }
+          showToast(
+            `Sua criação "${currentTitle}" foi salva no seu dossiê de compras.`,
+          );
+        });
+      }
+
+      // Custom Stylist button
+      const customConsultBtn = document.getElementById("custom-consulting-btn");
+      if (customConsultBtn) {
+        customConsultBtn.addEventListener("click", () => {
+          openBookingModal();
+          showToast("Abertura da agenda do estilista responsável.", "success");
+        });
+      }
+
+      // 6. Size Calculator Guide (Couture Fit)
+      const sizeForm = document.getElementById("size-calc-form");
+      const sizeResultBox = document.getElementById("size-result");
+      const recommendedSizeTxt = document.getElementById("recommended-size");
+
+      if (sizeForm) {
+        sizeForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const bustVal =
+            parseInt(
+              (document.getElementById("bust-input") as HTMLInputElement).value,
+            ) || 88;
+          const waistVal =
+            parseInt(
+              (document.getElementById("waist-input") as HTMLInputElement)
+                .value,
+            ) || 68;
+          const hipsVal =
+            parseInt(
+              (document.getElementById("hips-input") as HTMLInputElement).value,
+            ) || 98;
+
+          // Simple logic simulating French high-luxury sizes
+          let size = 38;
+          if (waistVal < 64 && bustVal < 84) {
+            size = 34;
+          } else if (waistVal < 68 && bustVal < 88) {
+            size = 36;
+          } else if (waistVal < 72 && bustVal < 92) {
+            size = 38;
+          } else if (waistVal < 76 && bustVal < 96) {
+            size = 40;
+          } else if (waistVal < 82 && bustVal < 102) {
+            size = 42;
+          } else {
+            size = 44;
+          }
+
+          if (recommendedSizeTxt) {
+            recommendedSizeTxt.textContent = `Derriere ${size} (FR)`;
+          }
+
+          if (sizeResultBox) {
+            sizeResultBox.classList.remove("hidden");
+            // Smooth scroll to the result
+            sizeResultBox.scrollIntoView({
+              behavior: "smooth",
+              block: "nearest",
+            });
+          }
+
+          showToast(
+            "Tamanho calculado de acordo com sua modelagem de luxo.",
+            "success",
+          );
+        });
+      }
+
+      // Size Confirm and Book
+      const sizeBookBtn = document.getElementById("size-book-btn");
+      if (sizeBookBtn) {
+        sizeBookBtn.addEventListener("click", () => {
+          openBookingModal();
+        });
+      }
+
+      // 7. VIP Atelier Booking Modal Controls
+      const bookingModal = document.getElementById("booking-modal");
+      const openBookingBtn = document.getElementById("open-booking-btn");
+      const openBookingBtnMobile = document.getElementById(
+        "open-booking-btn-mobile",
+      );
+      const closeBookingBtn = document.getElementById("close-booking-btn");
+      const bookingForm = document.getElementById("booking-form");
+
+      function openBookingModal() {
+        if (bookingModal) {
+          bookingModal.classList.remove("hidden");
+          document.body.style.overflow = "hidden"; // Stop scrolling
+        }
+      }
+
+      function closeBookingModal() {
+        if (bookingModal) {
+          bookingModal.classList.add("hidden");
+          document.body.style.overflow = ""; // Re-enable scrolling
+        }
+      }
+
+      if (openBookingBtn)
+        openBookingBtn.addEventListener("click", openBookingModal);
+      if (openBookingBtnMobile)
+        openBookingBtnMobile.addEventListener("click", openBookingModal);
+      if (closeBookingBtn)
+        closeBookingBtn.addEventListener("click", closeBookingModal);
+
+      // Close modal on outer clicks
+      if (bookingModal) {
+        bookingModal.addEventListener("click", (e) => {
+          if (e.target === bookingModal) {
+            closeBookingModal();
+          }
+        });
+      }
+
+      // Booking Submit
+      if (bookingForm) {
+        bookingForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const nameVal = (
+            document.getElementById("book-name") as HTMLInputElement
+          ).value;
+          const dateVal = (
+            document.getElementById("book-date") as HTMLInputElement
+          ).value;
+          const timeVal = (
+            document.getElementById("book-time") as HTMLSelectElement
+          ).value;
+
+          closeBookingModal();
+          bookingForm.reset();
+
+          showToast(
+            `Sua experiência de alto luxo está reservada! Aguarde nossa concierge.`,
+            "success",
+          );
+
+          // Show full alert modal simulation via modern toast
+          setTimeout(() => {
+            showToast(
+              `Atelier VIP: ${nameVal}, te aguardamos dia ${dateVal} às ${timeVal}.`,
+              "success",
+            );
+          }, 1500);
+        });
+      }
+
+      // 8. Newsletter & Bag trigger alerts
+      const newsForm = document.getElementById("newsletter-form");
+      if (newsForm) {
+        newsForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          newsForm.reset();
+          showToast(
+            "Parabéns! Você acaba de adentrar ao círculo secreto de elegância Derriere.",
+            "success",
+          );
+        });
+      }
+
+      const bagBtn = document.getElementById("bag-btn");
+      if (bagBtn) {
+        bagBtn.addEventListener("click", () => {
+          if (bagCount === 0) {
+            showToast(
+              "Sua sacola de atendimento está vazia no momento.",
+              "info",
+            );
+          } else {
+            showToast(
+              `Você possui ${bagCount} vestidos agendados para a sua consultoria privada.`,
+              "success",
+            );
+          }
+        });
+      }
+
+      // 9. Reveal Elements on Scroll
+      const revealElements = document.querySelectorAll(".reveal");
+      const revealOnScroll = () => {
+        const windowHeight = window.innerHeight;
+        revealElements.forEach((el) => {
+          const elementTop = el.getBoundingClientRect().top;
+          const elementVisible = 150;
+          if (elementTop < windowHeight - elementVisible) {
+            el.classList.add("active");
+          }
+        });
+      };
+      window.addEventListener("scroll", revealOnScroll);
+      window.addEventListener("load", revealOnScroll);
+    </script>
+  </body>
+</html>
